@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS `Revenue`(
     `ID` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `Location` INTEGER,
+    `idLocation` INTEGER,
     `Date` DATE,
     `Sum` DECIMAL,
-    CONSTRAINT FK_REVENUE_LOCATION FOREIGN KEY (`Location`) references `Location`(ID)
+    CONSTRAINT FK_REVENUE_LOCATION FOREIGN KEY (`idLocation`) references `Location`(ID)
     );

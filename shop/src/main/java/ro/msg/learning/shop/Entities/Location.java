@@ -6,9 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.ToString;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Column;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Location")
@@ -17,6 +15,10 @@ import javax.persistence.Column;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class Location extends Address{
+public class Location extends Base{
     private String name;
+
+    @OneToOne
+    @JoinColumn(name = "Address")
+    private Address address;
 }

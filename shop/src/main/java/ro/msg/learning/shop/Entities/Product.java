@@ -22,11 +22,11 @@ public class Product extends Base{
     private int weight;
 
     @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "category")
+    @JoinColumn(name = "idCategory")
     private ProductCategory category;
 
     @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "supplier")
+    @JoinColumn(name = "idSupplier")
     private Supplier supplier;
 
     private String imageUrl;

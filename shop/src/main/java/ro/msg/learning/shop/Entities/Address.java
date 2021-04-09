@@ -3,10 +3,8 @@ package ro.msg.learning.shop.Entities;
 import lombok.*;
 
 import javax.persistence.Entity;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Table;
 
-@MappedSuperclass
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

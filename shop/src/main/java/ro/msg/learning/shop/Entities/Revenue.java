@@ -17,7 +17,7 @@ import javax.persistence.*;
 @EqualsAndHashCode(callSuper = true)
 public class Revenue extends Base{
     @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "location")
+    @JoinColumn(name = "idLocation")
     private Location location;
 
     private java.sql.Date date;

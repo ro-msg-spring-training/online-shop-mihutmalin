@@ -7,6 +7,7 @@ import lombok.ToString;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "Order")
@@ -15,14 +16,18 @@ import javax.persistence.*;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class Order extends Address{
+public class Order extends Base{
     @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "shippedFrom")
+    @JoinColumn(name = "idLocation")
     private Location shippedFrom;
 
     @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "customer")
+    @JoinColumn(name = "idCustomer")
     private Customer customer;
 
-    private int createDate;
+    private Date createDate;
+
+    @OneToOne
+    @JoinColumn(name = "Address")
+    private Address address;
 }

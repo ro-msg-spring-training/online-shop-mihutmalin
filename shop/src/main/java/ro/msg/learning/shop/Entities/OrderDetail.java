@@ -14,14 +14,17 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-public class OrderDetail extends Base{
+@EqualsAndHashCode
+public class OrderDetail{
+    @EmbeddedId
+    private OrderDetailId orderDetailId;
+
     @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "order")
+    @JoinColumn(name = "idOrder")
     private Order order;
 
     @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "product")
+    @JoinColumn(name = "idProduct")
     private Product product;
 
     private int quantity;

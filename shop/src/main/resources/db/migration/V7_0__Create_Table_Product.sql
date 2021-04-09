@@ -1,12 +1,12 @@
 CREATE TABLE IF NOT EXISTS `Product`(
-    `ID` INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `Name` VARCHAR(30),
-    `Description` VARCHAR(50),
+    `ID` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `Name` VARCHAR(50),
+    `Description` VARCHAR(100),
     `Price` DECIMAL,
     `Weight` DOUBLE,
-    `ID_category` INTEGER,
-    `ID_supplier` INTEGER,
+    `Category` INTEGER,
+    `Supplier` INTEGER,
     `ImageUrl` VARCHAR(50),
-    CONSTRAINT FK_PRODUCT_CATEGORY FOREIGN KEY (`ID_category`) references `ProductCategory`(ID),
-    CONSTRAINT FK_PRODUCT_SUPPLIER FOREIGN KEY (`ID_supplier`) references `Supplier`(ID)
+    CONSTRAINT FK_PRODUCT_CATEGORY FOREIGN KEY (`Category`) references `ProductCategory`(ID),
+    CONSTRAINT FK_PRODUCT_SUPPLIER FOREIGN KEY (`Supplier`) references `Supplier`(ID)
     );

@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS `Location`(
-    `ID` INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `Name` VARCHAR(30),
-    `Country` VARCHAR(30),
-    `City` VARCHAR(30),
-    `County` VARCHAR(30),
-    `StreetAddress` VARCHAR(30)
+    `ID` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `Name` VARCHAR(50),
+    `Country` VARCHAR(50),
+    `City` VARCHAR(50),
+    `County` VARCHAR(50),
+    `StreetAddress` VARCHAR(50)
     );

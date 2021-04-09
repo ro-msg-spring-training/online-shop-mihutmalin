@@ -1,7 +1,8 @@
 CREATE TABLE IF NOT EXISTS `Stock`(
-    `ID_product` INTEGER,
-    `ID_location` INTEGER,
+    `ID` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `Product` INTEGER,
+    `Location` INTEGER,
     `Quantity` INTEGER,
-    CONSTRAINT FK_STOCK_PRODUCT FOREIGN KEY (`ID_product`) references `Product`(ID),
-    CONSTRAINT FK_STOCK_LOCATION FOREIGN KEY (`ID_location`) references `Location`(ID)
+    CONSTRAINT FK_STOCK_PRODUCT FOREIGN KEY (`Product`) references `Product`(ID),
+    CONSTRAINT FK_STOCK_LOCATION FOREIGN KEY (`Location`) references `Location`(ID)
     );

@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `ProductCategory`(
-    `ID` INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `Name` VARCHAR(30),
-    `Description` VARCHAR(50)
+    `ID` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `Name` VARCHAR(50),
+    `Description` VARCHAR(100)
     );
 

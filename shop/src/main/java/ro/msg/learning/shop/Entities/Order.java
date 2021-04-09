@@ -9,20 +9,24 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Stock")
+@Table(name = "Order")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class Stock extends Base{
+public class Order extends Base{
     @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "product")
-    private Product product;
+    @JoinColumn(name = "shippedFrom")
+    private Location shippedFrom;
 
     @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "location")
-    private Location location;
+    @JoinColumn(name = "customer")
+    private Customer customer;
 
-    private int quantity;
+    private int createDate;
+    private String country;
+    private String city;
+    private String county;
+    private String streetAddress;
 }

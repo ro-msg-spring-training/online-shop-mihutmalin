@@ -1,40 +1,22 @@
 package ro.msg.learning.shop.Entities;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.ToString;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "ProductCategory")
-public class ProductCategory {
-    @Id
-    @Column(name = "ID")
-    private int id;
-
-    @Column(name = "Name")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+public class ProductCategory extends Base{
     private String name;
-
-    @Column(name = "Description")
     private String description;
-
-    public int getId() {
-        return this.id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

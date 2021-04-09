@@ -15,7 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class Order extends Base{
+public class Order extends Address{
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name = "shippedFrom")
     private Location shippedFrom;
@@ -25,8 +25,4 @@ public class Order extends Base{
     private Customer customer;
 
     private int createDate;
-    private String country;
-    private String city;
-    private String county;
-    private String streetAddress;
 }

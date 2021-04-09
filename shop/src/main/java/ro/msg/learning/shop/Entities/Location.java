@@ -17,10 +17,6 @@ import javax.persistence.Column;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class Location extends Base{
+public class Location extends Address{
     private String name;
-    private String country;
-    private String city;
-    private String county;
-    private String streetAddress;
 }

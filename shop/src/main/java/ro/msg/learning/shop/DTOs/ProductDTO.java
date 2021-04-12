@@ -1,19 +1,27 @@
 package ro.msg.learning.shop.DTOs;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ro.msg.learning.shop.Entities.ProductCategory;
-import ro.msg.learning.shop.Entities.Supplier;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ProductDTO {
     private Long id;
     private String name;
     private String description;
     private int price;
     private int weight;
-    private ProductCategory category;
-    private Supplier supplier;
+
+    private Long idCategory;
+    private String nameCategory;
+    private String descriptionCategory;
+
+    private Long idSupplier;
+    private String nameSupplier;
+
     private String imageUrl;
 }

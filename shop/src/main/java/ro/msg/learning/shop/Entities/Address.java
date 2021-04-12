@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
+@Builder
 public class Address extends Base{
     private String country;
     private String city;

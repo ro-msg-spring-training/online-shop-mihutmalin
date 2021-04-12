@@ -1,10 +1,6 @@
 package ro.msg.learning.shop.Entities;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.ToString;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -15,15 +11,18 @@ import javax.persistence.*;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode
+@Builder
 public class OrderDetail{
     @EmbeddedId
     private OrderDetailId orderDetailId;
 
     @ManyToOne(fetch= FetchType.LAZY)
+    @MapsId("idOrder")
     @JoinColumn(name = "idOrder")
     private Order order;
 
     @ManyToOne(fetch= FetchType.LAZY)
+    @MapsId("idProduct")
     @JoinColumn(name = "idProduct")
     private Product product;
 

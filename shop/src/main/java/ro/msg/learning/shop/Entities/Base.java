@@ -15,6 +15,6 @@ import javax.persistence.GenerationType;
 public class Base {
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 }

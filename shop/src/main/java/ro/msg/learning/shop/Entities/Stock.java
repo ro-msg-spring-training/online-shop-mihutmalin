@@ -20,10 +20,12 @@ public class Stock{
     private StockId id;
 
     @ManyToOne(fetch= FetchType.LAZY)
+    @MapsId("idProduct")
     @JoinColumn(name = "idProduct")
     private Product product;
 
     @ManyToOne(fetch= FetchType.LAZY)
+    @MapsId("idLocation")
     @JoinColumn(name = "idLocation")
     private Location location;
 

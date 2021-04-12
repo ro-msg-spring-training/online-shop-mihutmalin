@@ -1,10 +1,6 @@
 package ro.msg.learning.shop.Entities;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.ToString;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -17,6 +13,7 @@ import javax.persistence.Column;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
+@Builder
 public class Supplier extends Base{
     private String name;
 }

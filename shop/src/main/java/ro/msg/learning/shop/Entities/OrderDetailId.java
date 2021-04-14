@@ -12,7 +12,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
+@Builder
 public class OrderDetailId implements Serializable {
-    private int OrderId;
-    private int ProductId;
+    private Long idOrder;
+    private Long idProduct;
 }

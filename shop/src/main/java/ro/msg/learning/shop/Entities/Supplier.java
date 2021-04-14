@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import javax.persistence.Column;
 
 @Entity
-@Table(name = "Supplier")
+@Table(name = "supplier")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

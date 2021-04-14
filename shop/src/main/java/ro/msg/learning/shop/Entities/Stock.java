@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Stock")
+@Table(name = "stock")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

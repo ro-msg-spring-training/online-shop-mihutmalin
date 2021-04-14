@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Location")
+@Table(name = "location")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,6 +16,6 @@ public class Location extends Base{
     private String name;
 
     @OneToOne
-    @JoinColumn(name = "Address")
+    @JoinColumn(name = "address")
     private Address address;
 }

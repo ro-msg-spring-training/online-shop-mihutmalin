@@ -3,11 +3,13 @@ package ro.msg.learning.shop.Entities;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "address")
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Builder

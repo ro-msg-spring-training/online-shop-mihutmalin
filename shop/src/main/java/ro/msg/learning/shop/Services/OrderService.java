@@ -3,12 +3,9 @@ package ro.msg.learning.shop.Services;
 import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ro.msg.learning.shop.Configurations.SingleLocationStrategyConfiguration;
-import ro.msg.learning.shop.Configurations.StrategyConfiguration;
+import ro.msg.learning.shop.Entities.*;
+import ro.msg.learning.shop.Strategies.StrategyConfigurationInterface;
 import ro.msg.learning.shop.DTOs.*;
-import ro.msg.learning.shop.Entities.Customer;
-import ro.msg.learning.shop.Entities.Order;
-import ro.msg.learning.shop.Entities.OrderDetail;
 import ro.msg.learning.shop.Repositories.*;
 import ro.msg.learning.shop.Utility.Mapper;
 
@@ -22,7 +19,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final OrderDetailRepository orderDetailRepository;
     private final CustomerRepository customerRepository;
-    private final StrategyConfiguration strategy;
+    private final StrategyConfigurationInterface strategy;
 
     public ArrayList<OrderDTO> create(InputDTO inputDTO){
         ArrayList<OrderDTO> result = new ArrayList<>();
@@ -30,11 +27,12 @@ public class OrderService {
         ArrayList<StrategyDTO> list = (ArrayList<StrategyDTO>)strategy.doStrategy(inputDTO);
 
         Customer customer = customerRepository.findById(inputDTO.getCustomerId()).get();
+        Address address = Mapper.convertAddressDTOToAddress(inputDTO.getAddressDTO());
 
         boolean single = true;
         LocationDTO firstLocationDTO = list.get(0).getLocation();
         for(StrategyDTO strategyDTO : list) {
-            if (strategyDTO.getLocation() != firstLocationDTO) {
+            if (!strategyDTO.getLocation().getId().equals(firstLocationDTO.getId())) {
                 single = false;
                 break;
             }
@@ -45,12 +43,17 @@ public class OrderService {
                     .shippedFrom(Mapper.convertLocationDTOToLocation(firstLocationDTO))
                     .customer(customer)
                     .createDate(inputDTO.getCreateDate())
-                    .address(Mapper.convertAddressDTOToAddress(inputDTO.getAddressDTO()))
+                    .address(address)
                     .build();
             orderRepository.save(order);
             result.add(Mapper.convertOrderToOrderDTO(order));
             for(StrategyDTO strategy : list){
+                OrderDetailId orderDetailId = OrderDetailId.builder()
+                        .idOrder(order.getId())
+                        .idProduct(strategy.getProduct().getId())
+                        .build();
                 OrderDetail orderDetail = OrderDetail.builder()
+                        .orderDetailId(orderDetailId)
                         .product(Mapper.convertProductDTOToProduct(strategy.getProduct()))
                         .order(order)
                         .quantity(strategy.getQuantity())
@@ -60,7 +63,7 @@ public class OrderService {
         }
         else{
             for(StrategyDTO strategy : list){
-                LocationDTO multipleLocationDTO = list.get(0).getLocation();
+                LocationDTO multipleLocationDTO = strategy.getLocation();
                 Order order = null;
                 for(StrategyDTO strategy2 : list) {
                     if(multipleLocationDTO == strategy2.getLocation()) {
@@ -68,14 +71,18 @@ public class OrderService {
                                 .shippedFrom(Mapper.convertLocationDTOToLocation(multipleLocationDTO))
                                 .customer(customer)
                                 .createDate(inputDTO.getCreateDate())
-                                .address(Mapper.convertAddressDTOToAddress(inputDTO.getAddressDTO()))
+                                .address(address)
                                 .build();
                         orderRepository.save(order);
                         result.add(Mapper.convertOrderToOrderDTO(order));
                     }
                 }
-
+                OrderDetailId orderDetailId = OrderDetailId.builder()
+                        .idOrder(order.getId())
+                        .idProduct(strategy.getProduct().getId())
+                        .build();
                 OrderDetail orderDetail = OrderDetail.builder()
+                        .orderDetailId(orderDetailId)
                         .product(Mapper.convertProductDTOToProduct(strategy.getProduct()))
                         .order(order)
                         .quantity(strategy.getQuantity())

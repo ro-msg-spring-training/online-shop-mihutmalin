@@ -10,6 +10,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Embeddable
 public class StockId implements Serializable {
-    private int ProductId;
-    private int LocationId;
+    private Long idProduct;
+    private Long idLocation;
 }

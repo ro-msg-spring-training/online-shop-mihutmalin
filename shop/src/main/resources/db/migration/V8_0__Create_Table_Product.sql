@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `Product`(
+CREATE TABLE IF NOT EXISTS `product`(
     `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(50),
     `description` VARCHAR(100),
@@ -7,6 +7,6 @@ CREATE TABLE IF NOT EXISTS `Product`(
     `idCategory` INTEGER,
     `idSupplier` INTEGER,
     `imageUrl` VARCHAR(50),
-    CONSTRAINT FK_PRODUCT_CATEGORY FOREIGN KEY (`idCategory`) references `ProductCategory`(`id`),
-    CONSTRAINT FK_PRODUCT_SUPPLIER FOREIGN KEY (`idSupplier`) references `Supplier`(`id`)
+    CONSTRAINT FK_PRODUCT_CATEGORY FOREIGN KEY (`idCategory`) references `productCategory`(`id`),
+    CONSTRAINT FK_PRODUCT_SUPPLIER FOREIGN KEY (`idSupplier`) references `supplier`(`id`)
     );

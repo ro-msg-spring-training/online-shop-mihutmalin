@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "Order")
+@Table(name = "orderr")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,6 +25,6 @@ public class Order extends Base{
     private Date createDate;
 
     @OneToOne
-    @JoinColumn(name = "Address")
+    @JoinColumn(name = "address")
     private Address address;
 }

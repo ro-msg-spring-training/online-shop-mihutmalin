@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "ProductCategory")
+@Table(name = "productCategory")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

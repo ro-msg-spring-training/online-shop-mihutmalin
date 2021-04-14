@@ -38,6 +38,7 @@ public class Mapper {
     /////////////////////////////////////////////////////////////////////////////////////////////
     public OrderDTO convertOrderToOrderDTO(Order order){
         return OrderDTO.builder()
+                .id(order.getId())
                 .shippedFrom(convertLocationToLocationDTO(order.getShippedFrom()))
                 .customer(convertCustomerToCustomerDTO(order.getCustomer()))
                 .createDate(order.getCreateDate())
@@ -60,22 +61,26 @@ public class Mapper {
     /////////////////////////////////////////////////////////////////////////////////////////////
     public LocationDTO convertLocationToLocationDTO(Location location){
         return LocationDTO.builder()
+                .id(location.getId())
                 .name(location.getName())
                 .address(convertAddressToAddressDTO(location.getAddress()))
                 .build();
     }
 
     public Location convertLocationDTOToLocation(LocationDTO locationDTO){
-        return Location.builder()
+        Location location = Location.builder()
                 .name(locationDTO.getName())
                 .address(convertAddressDTOToAddress(locationDTO.getAddress()))
                 .build();
+        location.setId(locationDTO.getId());
+        return location;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////// Customer ///////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////
     public CustomerDTO convertCustomerToCustomerDTO(Customer customer){
         return CustomerDTO.builder()
+                .id(customer.getId())
                 .firstName(customer.getFirstName())
                 .lastName(customer.getLastName())
                 .username(customer.getUsername())
@@ -136,6 +141,7 @@ public class Mapper {
     /////////////////////////////////////////////////////////////////////////////////////////////
     public AddressDTO convertAddressToAddressDTO(Address address){
         return AddressDTO.builder()
+                .id(address.getId())
                 .country(address.getCountry())
                 .city(address.getCity())
                 .county(address.getCounty())
@@ -144,10 +150,13 @@ public class Mapper {
     }
 
     public Address convertAddressDTOToAddress(AddressDTO addressDTO){
-        return Address.builder().country(addressDTO.getCountry())
+        Address address =  Address.builder().
+                country(addressDTO.getCountry())
                 .city(addressDTO.getCity())
                 .county(addressDTO.getCounty())
                 .streetAddress(addressDTO.getStreetAddress())
                 .build();
+        address.setId(addressDTO.getId());
+        return address;
     }
 }

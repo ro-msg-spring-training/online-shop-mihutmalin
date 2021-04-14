@@ -19,6 +19,7 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("/orders")
+    @ResponseBody
     public ResponseEntity<InputDTO> create(@RequestBody InputDTO inputDTO) {
         if(orderService.create(inputDTO) == null)
             return new ResponseEntity(HttpStatus.NOT_FOUND);

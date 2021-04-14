@@ -1,16 +1,12 @@
 package ro.msg.learning.shop.Configurations;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+import ro.msg.learning.shop.DTOs.InputDTO;
+import ro.msg.learning.shop.DTOs.StrategyDTO;
 
-@Configuration
-public class StrategyConfiguration {
-    @Bean(name="SingleLocation")
-    public void doSingleLocation(){
-    }
+import java.util.List;
 
-    @Bean(name="MostAbundant")
-    public void doMostAbundant(){
-    }
-
+@Component
+public interface StrategyConfiguration {
+    public List<StrategyDTO> doStrategy(InputDTO inputDTO);
 }

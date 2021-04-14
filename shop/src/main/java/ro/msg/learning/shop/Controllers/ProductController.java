@@ -17,7 +17,6 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping("/products")
-    @ResponseBody
     public ProductDTO create(@RequestBody ProductDTO productDTO) {
         return productService.create(productDTO);
     }

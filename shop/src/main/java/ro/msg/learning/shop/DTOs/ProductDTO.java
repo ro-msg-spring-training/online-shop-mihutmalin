@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ro.msg.learning.shop.Entities.ProductCategory;
 
 @Data
 @NoArgsConstructor
@@ -15,13 +16,7 @@ public class ProductDTO {
     private String description;
     private int price;
     private int weight;
-
-    private Long idCategory;
-    private String nameCategory;
-    private String descriptionCategory;
-
-    private Long idSupplier;
-    private String nameSupplier;
-
+    private ProductCategoryDTO productCategory;
+    private SupplierDTO supplier;
     private String imageUrl;
 }

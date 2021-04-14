@@ -1,60 +1,145 @@
 package ro.msg.learning.shop.Utility;
 
 import lombok.experimental.UtilityClass;
-import ro.msg.learning.shop.DTOs.AddressDTO;
-import ro.msg.learning.shop.DTOs.OrderDTO;
-import ro.msg.learning.shop.DTOs.ProductDTO;
+import ro.msg.learning.shop.DTOs.*;
 import ro.msg.learning.shop.Entities.*;
 
 @UtilityClass
 public class Mapper {
-
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////// PRODUCT ///////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////
     public ProductDTO convertProductToProductDTO(Product product){
-        return ProductDTO.builder().id(product.getId())
+        return ProductDTO.builder()
+                .id(product.getId())
                 .name(product.getName())
                 .description(product.getDescription())
                 .price(product.getPrice())
                 .weight(product.getWeight())
-                .idCategory(product.getCategory().getId())
-                .nameCategory(product.getCategory().getName())
-                .descriptionCategory(product.getCategory().getDescription())
-                .idSupplier(product.getSupplier().getId())
-                .nameSupplier(product.getSupplier().getName())
+                .productCategory(convertProductCategoryToProductCategoryDTO(product.getCategory()))
+                .supplier(convertSupplierToSupplierDTO(product.getSupplier()))
                 .imageUrl(product.getImageUrl()).build();
     }
 
     public Product convertProductDTOToProduct(ProductDTO productDTO){
-        ProductCategory productCategory = ProductCategory.builder().name(productDTO.getNameCategory())
-                .description(productDTO.getDescriptionCategory())
-                .build();
-        productCategory.setId(productDTO.getIdCategory());
-        Supplier supplier = Supplier.builder().name(productDTO.getNameSupplier())
-                .build();
-        supplier.setId(productDTO.getIdSupplier());
-
-        return Product.builder().name(productDTO.getName())
+        Product product = Product.builder().
+                name(productDTO.getName())
                 .description(productDTO.getDescription())
                 .price(productDTO.getPrice())
                 .weight(productDTO.getWeight())
-                .category(productCategory)
-                .supplier(supplier)
+                .category(convertProductCategoryDTOToProductCategory(productDTO.getProductCategory()))
+                .supplier(convertSupplierDTOToSupplier(productDTO.getSupplier()))
                 .imageUrl(productDTO.getImageUrl()).build();
+        product.setId(productDTO.getId());
+        return product;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////// ORDER /////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    public OrderDTO convertOrderToOrderDTO(Order order){
+        return OrderDTO.builder()
+                .shippedFrom(convertLocationToLocationDTO(order.getShippedFrom()))
+                .customer(convertCustomerToCustomerDTO(order.getCustomer()))
+                .createDate(order.getCreateDate())
+                .address(convertAddressToAddressDTO(order.getAddress()))
+                .build();
     }
 
-    public Order convertOrderDTOToOrder(OrderDTO orderDTO, String firstName, String lastName, String username, String password,
-                                  String emailAddress){
-        Customer customer = Customer.builder().firstName(firstName)
-                .lastName(lastName)
-                .username(username)
-                .password(password)
-                .emailAddress(emailAddress)
-                .build();
-        customer.setId(orderDTO.getCustomerId());
-
-        return Order.builder().shippedFrom(new Location())
-                .customer(customer)
+    public Order convertOrderDTOToOrder(OrderDTO orderDTO){
+        Order order = Order.builder()
+                .shippedFrom(convertLocationDTOToLocation(orderDTO.getShippedFrom()))
+                .customer(convertCustomerDTOToCustomer(orderDTO.getCustomer()))
                 .createDate(orderDTO.getCreateDate())
-                .address(convertAddressDTOToAddress(orderDTO.getAddressDTO()))
+                .address(convertAddressDTOToAddress(orderDTO.getAddress()))
+                .build();
+        order.setId(orderDTO.getId());
+        return order;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////// LOCATION ///////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    public LocationDTO convertLocationToLocationDTO(Location location){
+        return LocationDTO.builder()
+                .name(location.getName())
+                .address(convertAddressToAddressDTO(location.getAddress()))
+                .build();
+    }
+
+    public Location convertLocationDTOToLocation(LocationDTO locationDTO){
+        return Location.builder()
+                .name(locationDTO.getName())
+                .address(convertAddressDTOToAddress(locationDTO.getAddress()))
+                .build();
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////// Customer ///////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    public CustomerDTO convertCustomerToCustomerDTO(Customer customer){
+        return CustomerDTO.builder()
+                .firstName(customer.getFirstName())
+                .lastName(customer.getLastName())
+                .username(customer.getUsername())
+                .password(customer.getPassword())
+                .emailAddress(customer.getEmailAddress())
+                .build();
+    }
+
+    public Customer convertCustomerDTOToCustomer(CustomerDTO customerDTO){
+        Customer customer =  Customer.builder()
+                .firstName(customerDTO.getFirstName())
+                .lastName(customerDTO.getLastName())
+                .username(customerDTO.getUsername())
+                .password(customerDTO.getPassword())
+                .emailAddress(customerDTO.getEmailAddress())
+                .build();
+        customer.setId(customerDTO.getId());
+        return customer;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////// SUPPLIER ///////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    public SupplierDTO convertSupplierToSupplierDTO(Supplier supplier){
+        return SupplierDTO.builder()
+                .id(supplier.getId())
+                .name(supplier.getName())
+                .build();
+    }
+
+    public Supplier convertSupplierDTOToSupplier(SupplierDTO supplierDTO){
+        Supplier supplier = Supplier.builder()
+                .name(supplierDTO.getName())
+                .build();
+        supplier.setId(supplierDTO.getId());
+        return supplier;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////// PRODUCT CATEGORY //////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    public ProductCategoryDTO convertProductCategoryToProductCategoryDTO(ProductCategory productCategory){
+        return ProductCategoryDTO.builder()
+                .id(productCategory.getId())
+                .name(productCategory.getName())
+                .description(productCategory.getDescription())
+                .build();
+    }
+
+    public ProductCategory convertProductCategoryDTOToProductCategory(ProductCategoryDTO productCategoryDTO){
+        ProductCategory productCategory = ProductCategory.builder()
+                .name(productCategoryDTO.getName())
+                .description(productCategoryDTO.getDescription())
+                .build();
+        productCategory.setId(productCategoryDTO.getId());
+        return productCategory;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////// ADDRESS ///////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    public AddressDTO convertAddressToAddressDTO(Address address){
+        return AddressDTO.builder()
+                .country(address.getCountry())
+                .city(address.getCity())
+                .county(address.getCounty())
+                .streetAddress(address.getStreetAddress())
                 .build();
     }
 

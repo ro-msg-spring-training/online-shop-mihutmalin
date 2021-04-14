@@ -1,9 +1,10 @@
 CREATE TABLE IF NOT EXISTS "Order"(
-    `ID` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `idLocation` INTEGER,
     `idCustomer` INTEGER,
-    `CreateDate` DATETIME,
-    `Address` INTEGER,
-    CONSTRAINT FK_ORDER_LOCATION FOREIGN KEY (`idLocation`) references `Location`(ID),
-    CONSTRAINT FK_ORDER_CUSTOMER FOREIGN KEY (`idCustomer`) references `Customer`(ID)
+    `createDate` DATETIME,
+    `address` INTEGER,
+    CONSTRAINT FK_ORDER_ADDRESS FOREIGN KEY (`address`) REFERENCES `Address`(`id`),
+    CONSTRAINT FK_ORDER_LOCATION FOREIGN KEY (`idLocation`) references `Location`(`id`),
+    CONSTRAINT FK_ORDER_CUSTOMER FOREIGN KEY (`idCustomer`) references `Customer`(`id`)
     );

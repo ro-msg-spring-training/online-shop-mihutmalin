@@ -1,10 +1,6 @@
 package ro.msg.learning.shop.Entities;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import lombok.ToString;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -15,6 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
+@Builder
 public class Location extends Base{
     private String name;
 

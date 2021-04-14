@@ -5,16 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OrderDTO {
+public class ProductCategoryDTO {
     private Long id;
-    private LocationDTO shippedFrom;
-    private CustomerDTO customer;
-    private Date createDate;
-    private AddressDTO address;
+    private String name;
+    private String description;
 }

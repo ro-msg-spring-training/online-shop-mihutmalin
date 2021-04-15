@@ -7,6 +7,7 @@ import ro.msg.learning.shop.DTOs.StrategyDTO;
 import ro.msg.learning.shop.Entities.Location;
 import ro.msg.learning.shop.Entities.Stock;
 import ro.msg.learning.shop.Entities.StockId;
+import ro.msg.learning.shop.Exceptions.MostAbundantException;
 import ro.msg.learning.shop.Repositories.LocationRepository;
 import ro.msg.learning.shop.Repositories.StockRepository;
 import ro.msg.learning.shop.Utility.Mapper;
@@ -44,7 +45,7 @@ public class MostAbundantStrategyConfiguration implements StrategyConfigurationI
             stockRepository.save(stock.get(0));
         }
         if(result.isEmpty())
-            throw new RuntimeException("Cannot apply MostAbundantStrategy");
+            throw new MostAbundantException();
 
         return result;
     }

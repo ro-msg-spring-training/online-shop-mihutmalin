@@ -9,6 +9,7 @@ import ro.msg.learning.shop.DTOs.*;
 import ro.msg.learning.shop.Repositories.*;
 import ro.msg.learning.shop.Utility.Mapper;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,6 +22,7 @@ public class OrderService {
     private final CustomerRepository customerRepository;
     private final StrategyConfigurationInterface strategy;
 
+    @Transactional
     public ArrayList<OrderDTO> create(InputDTO inputDTO){
         ArrayList<OrderDTO> result = new ArrayList<>();
 

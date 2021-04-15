@@ -9,6 +9,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
+@Builder
 public class StockId implements Serializable {
     private Long idProduct;
     private Long idLocation;

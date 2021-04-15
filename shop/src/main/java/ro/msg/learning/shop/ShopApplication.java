@@ -8,13 +8,6 @@ public class ShopApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ShopApplication.class, args);
-		/*
-		ApplicationContext ctx = new AnnotationConfigApplicationContext(StrategyConfiguration.class);
-
-		StrategyConfiguration strategy = ctx.getBean(StrategyConfiguration.class);
-		strategy.doSingleLocation();
-		strategy.doMostAbundant();
-		 */
 	}
 
 }

@@ -8,6 +8,7 @@ import ro.msg.learning.shop.DTOs.*;
 import ro.msg.learning.shop.Entities.Location;
 import ro.msg.learning.shop.Entities.Stock;
 import ro.msg.learning.shop.Entities.StockId;
+import ro.msg.learning.shop.Exceptions.SingleLocationException;
 import ro.msg.learning.shop.Repositories.LocationRepository;
 import ro.msg.learning.shop.Repositories.StockRepository;
 import ro.msg.learning.shop.Utility.Mapper;
@@ -66,7 +67,7 @@ public class SingleLocationStrategyConfiguration implements StrategyConfiguratio
             }
         }
         if(result.isEmpty())
-            throw new RuntimeException("Cannot apply SingleLocationStrategy");
+            throw new SingleLocationException();
 
         return result;
     }

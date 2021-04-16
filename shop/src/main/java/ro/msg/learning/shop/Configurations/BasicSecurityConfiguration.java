@@ -21,11 +21,6 @@ import ro.msg.learning.shop.Services.UserDetailsService;
 public class BasicSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
 
-    @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/h2-console/**");
-    }
-
     @Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
@@ -34,8 +29,8 @@ public class BasicSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/h2-console").permitAll()
-                .antMatchers("/**").authenticated()
+                .anyRequest()
+                .authenticated()
                 .and()
                 .httpBasic()
                 .and()

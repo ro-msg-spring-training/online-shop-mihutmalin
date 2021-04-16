@@ -5,9 +5,9 @@ values('1','Romania','Cluj-Napoca','Cluj','str. Lalelelor, nr. 22'),
       ('4','Italy','Milano','District2','str. Central, nr. 7');
 
 insert into customer(id, firstName, lastName, username, password, emailAddress)
-values('1','Ovidiu','Duda','ovidiududa','12345', 'ovidiududa@yahoo.com'),
-      ('2','Dan','Furtha','danfurtha','12345', 'danfurtha@yahoo.com'),
-      ('3','Mihaela','State','mihaelastate','12345', 'mihaelastate@yahoo.com');
+values('1','Ovidiu','Duda','ovidiududa','$2a$10$5YGHmVVZOMx4qeNbjO25kenFNfGjiu5zykRMJUL3/k8acWct67Njy', 'ovidiududa@yahoo.com'),
+      ('2','Dan','Furtha','danfurtha','$2a$10$5YGHmVVZOMx4qeNbjO25kenFNfGjiu5zykRMJUL3/k8acWct67Njy', 'danfurtha@yahoo.com'),
+      ('3','Mihaela','State','mihaelastate','$2a$10$5YGHmVVZOMx4qeNbjO25kenFNfGjiu5zykRMJUL3/k8acWct67Njy', 'mihaelastate@yahoo.com');
 
 insert into location(id, name, address)
 values('1','Depo1','2'),

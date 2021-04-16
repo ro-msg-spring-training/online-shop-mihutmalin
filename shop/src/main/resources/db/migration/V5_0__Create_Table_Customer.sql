@@ -3,6 +3,6 @@ CREATE TABLE IF NOT EXISTS `customer`(
     `firstName` VARCHAR(50),
     `lastName` VARCHAR(50),
     `username` VARCHAR(50),
-    `password` VARCHAR(50),
+    `password` VARCHAR(256),
     `emailAddress` VARCHAR(50)
     );

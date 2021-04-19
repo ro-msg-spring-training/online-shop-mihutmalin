@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS `location`(
+    `id` BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(50),
+    `address` INTEGER,
+    CONSTRAINT FK_LOCATION_ADDRESS FOREIGN KEY (`address`) REFERENCES `address`(`id`)
+    );
